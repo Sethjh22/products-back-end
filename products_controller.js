@@ -34,9 +34,11 @@ module.exports = {
     },
     update: (req, res) => {
         const db = req.app.get('db')
-        const {id} = req.params
-        const {desc} = req.query
-        db.update_product([id, desc])
+        // const {id} = req.params
+        // const {desc} = req.query
+        // db.update_product([id, desc])
+        const {params, query} = req
+        db.update_product([params.id, query.desc])
             .then( () => res.sendStatus(200))
             .catch(err => {
                 res.status(500).send({errorMessage: "YOU FAILED, TRY AGAIN LATER"})
